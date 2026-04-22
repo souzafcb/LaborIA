@@ -6,51 +6,66 @@
     <title>LaborIA Academy | Laboratório de Pensamento Aplicado</title>
     <meta
       name="description"
-      content="Formação prática em inteligência artificial para resolver problemas reais com método, validação crítica e soberania cognitiva."
+      content="Formação prática em inteligência artificial para resolver problemas reais com método, validação crítica e aplicação concreta."
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
       rel="stylesheet"
     />
 
     <style>
       :root {
         --bg-color: #fcfbf7;
+        --paper-color: rgba(255, 255, 255, 0.82);
+        --card-bg: rgba(255, 255, 255, 0.92);
+        --card-strong: rgba(255, 255, 255, 0.96);
         --text-color: #1e293b;
+        --muted-color: #475569;
         --heading-color: #0f172a;
-        --green-valid: #047857;
+        --line-color: rgba(148, 163, 184, 0.12);
+        --border-color: #dbe4ee;
         --blue-cog: #2563eb;
+        --blue-soft: rgba(37, 99, 235, 0.08);
+        --green-valid: #047857;
+        --green-soft: rgba(4, 120, 87, 0.08);
         --orange-alert: #b45309;
-        --border-color: #dde5ee;
-        --card-bg: rgba(255, 255, 255, 0.94);
+        --orange-soft: rgba(180, 83, 9, 0.08);
+        --shadow-soft: 0 16px 38px rgba(15, 23, 42, 0.07);
+        --shadow-hover: 0 24px 48px rgba(15, 23, 42, 0.1);
         --font-serif: 'Lora', serif;
         --font-mono: 'JetBrains Mono', monospace;
+        --content-width: 1120px;
+        --nav-height: 82px;
+        --radius-lg: 22px;
+        --radius-md: 18px;
+        --radius-sm: 14px;
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
-      html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
       body {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 32px 80px;
-        position: relative;
-        background-color: var(--bg-color);
+        margin: 0;
         color: var(--text-color);
         font-family: var(--font-serif);
-        line-height: 1.7;
+        line-height: 1.72;
+        background-color: var(--bg-color);
         background-image: repeating-linear-gradient(
           to bottom,
           transparent,
           transparent 31px,
-          rgba(148, 163, 184, 0.12) 31px,
-          rgba(148, 163, 184, 0.12) 32px
+          var(--line-color) 31px,
+          var(--line-color) 32px
         );
-        background-attachment: local;
+        overflow-x: hidden;
       }
 
       body::before {
@@ -58,193 +73,529 @@
         position: fixed;
         top: 0;
         bottom: 0;
-        left: max(20px, calc((100vw - 980px) / 2 + 40px));
+        left: max(18px, calc((100vw - var(--content-width)) / 2 + 34px));
         width: 2px;
         background: rgba(180, 83, 9, 0.18);
         pointer-events: none;
+        z-index: 0;
       }
 
-      h1, h2, h3 {
-        font-family: var(--font-serif);
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 15% 10%, rgba(37, 99, 235, 0.05), transparent 24%),
+          radial-gradient(circle at 85% 20%, rgba(4, 120, 87, 0.05), transparent 22%),
+          radial-gradient(circle at 60% 80%, rgba(180, 83, 9, 0.04), transparent 20%);
+        z-index: 0;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: var(--blue-cog);
+      }
+
+      .page-shell {
+        max-width: var(--content-width);
+        margin: 0 auto;
+        padding: 0 56px 56px 72px;
+        position: relative;
+        z-index: 1;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0 0 1rem;
         color: var(--heading-color);
-        line-height: 1.25;
+        font-family: var(--font-serif);
+        line-height: 1.16;
       }
 
       h1 {
-        font-size: clamp(2rem, 4vw, 3rem);
-        margin: 0 0 1rem;
+        font-size: clamp(2.45rem, 4.4vw, 4.4rem);
+        letter-spacing: -0.04em;
       }
 
       h2 {
-        font-size: clamp(1.5rem, 3vw, 2rem);
-        margin: 0 0 1rem;
-        padding-bottom: 0.5rem;
+        font-size: clamp(1.6rem, 2.7vw, 2.45rem);
+        padding-bottom: 0.7rem;
         border-bottom: 1px solid var(--border-color);
       }
 
       h3 {
-        font-size: 1.2rem;
-        margin: 0.5rem 0 1rem;
+        font-size: 1.25rem;
       }
 
-      p { margin: 0 0 1.2rem; }
-
-      a { color: var(--blue-cog); }
-
-      nav {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 0;
-        margin-bottom: 2rem;
-        background: rgba(252, 251, 247, 0.96);
-        backdrop-filter: blur(6px);
-        border-bottom: 1px solid var(--border-color);
+      p {
+        margin: 0 0 1.12rem;
       }
 
-      .lab-brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        text-decoration: none;
-        color: inherit;
-      }
-
-      .brand-mark {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, #0f172a, #2563eb);
-        color: #fff;
-        font-family: var(--font-mono);
-        font-weight: 700;
-        letter-spacing: 1px;
-      }
-
-      .lab-brand-text {
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        line-height: 1.2;
-      }
-
-      .lab-brand-text span {
-        display: block;
-        font-weight: 400;
-        font-size: 0.58rem;
-        letter-spacing: 2px;
-        color: #64748b;
-      }
-
-      .menu-toggle {
-        display: none;
-        border: 1px solid var(--border-color);
-        background: white;
-        border-radius: 6px;
-        padding: 0.45rem 0.75rem;
-        font-size: 1.1rem;
-        cursor: pointer;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 1.2rem;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .nav-links a {
-        text-decoration: none;
-        color: var(--text-color);
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
-        font-weight: 700;
-        text-transform: uppercase;
-      }
-
-      .nav-links a:hover { color: var(--blue-cog); }
-
-      section {
-        margin-bottom: 4rem;
-        scroll-margin-top: 90px;
-      }
-
-      .marker, .badge, .btn, label, .price, .plan-note {
+      .marker,
+      .badge,
+      .btn,
+      .lead-form label,
+      .price,
+      .plan-note,
+      .eyebrow,
+      .stat-label,
+      .contact-item small,
+      .topline,
+      .micro-copy {
         font-family: var(--font-mono);
       }
 
       .marker {
         display: inline-block;
+        margin-bottom: 0.8rem;
         font-size: 0.72rem;
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1px;
-        font-weight: 700;
-        margin-bottom: 0.75rem;
       }
 
-      .hipotese { color: var(--blue-cog); }
-      .teste { color: var(--orange-alert); }
-      .resultado { color: var(--green-valid); }
+      .hipotese {
+        color: var(--blue-cog);
+      }
+      .teste {
+        color: var(--orange-alert);
+      }
+      .resultado {
+        color: var(--green-valid);
+      }
+
+      .glass-card,
+      .hero-copy,
+      .hero-panel,
+      .lab-note,
+      .step-card,
+      .plan-card,
+      .lead-form,
+      .contact-card,
+      .info-card,
+      .diagram-flow,
+      .cta-band,
+      .ebook-note,
+      .founder-panel,
+      .micro-card,
+      .contact-meta {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px) scale(0.985);
+        transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform, opacity;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .reveal[data-delay='1'] { transition-delay: 0.08s; }
+      .reveal[data-delay='2'] { transition-delay: 0.16s; }
+      .reveal[data-delay='3'] { transition-delay: 0.24s; }
+      .reveal[data-delay='4'] { transition-delay: 0.32s; }
+
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: var(--nav-height);
+        padding: 1rem 0;
+        margin-bottom: 2.4rem;
+        background: rgba(252, 251, 247, 0.84);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(219, 228, 238, 0.8);
+      }
+
+      .lab-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.95rem;
+        min-width: 0;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand-logo-wrap {
+        position: relative;
+        flex: 0 0 auto;
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        padding: 8px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(241,245,249,0.9));
+        border: 1px solid rgba(219, 228, 238, 0.92);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+
+      .brand-logo-wrap::before {
+        content: '';
+        position: absolute;
+        inset: -35%;
+        background: conic-gradient(
+          from 0deg,
+          transparent 0deg,
+          rgba(37, 99, 235, 0.22) 72deg,
+          transparent 144deg,
+          rgba(4, 120, 87, 0.18) 216deg,
+          transparent 288deg,
+          rgba(180, 83, 9, 0.14) 360deg
+        );
+        animation: spinHalo 9s linear infinite;
+        opacity: 0.85;
+      }
+
+      .brand-logo-wrap::after {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        border-radius: 14px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.92));
+      }
+
+      .brand-logo {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: saturate(0.95) contrast(1.02);
+      }
+
+      .lab-brand:hover .brand-logo-wrap {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .lab-brand-text {
+        min-width: 0;
+        font-size: 0.79rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: 1.3;
+      }
+
+      .lab-brand-text span {
+        display: block;
+        margin-top: 0.18rem;
+        color: #64748b;
+        font-size: 0.56rem;
+        font-weight: 500;
+        letter-spacing: 1.9px;
+      }
+
+      .menu-toggle {
+        display: none;
+        border: 1px solid var(--border-color);
+        background: rgba(255,255,255,0.92);
+        color: var(--heading-color);
+        padding: 0.55rem 0.8rem;
+        border-radius: 12px;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        position: relative;
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.35rem;
+        height: 2px;
+        background: linear-gradient(90deg, var(--blue-cog), var(--green-valid));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      main {
+        display: grid;
+        gap: 4.4rem;
+      }
+
+      section {
+        scroll-margin-top: calc(var(--nav-height) + 18px);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+        gap: 1.7rem;
+        align-items: stretch;
+      }
+
+      .hero-copy {
+        position: relative;
+        overflow: hidden;
+        padding: 2.1rem 2rem 1.85rem;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.91)),
+          radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 32%);
+      }
+
+      .hero-copy::before {
+        content: '';
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        top: -90px;
+        right: -90px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.12), transparent 68%);
+        pointer-events: none;
+      }
 
       .hero-subtitle {
-        font-size: 1.15rem;
-        color: #475569;
-        font-style: italic;
         margin-bottom: 1.5rem;
+        color: var(--muted-color);
+        font-size: 1.12rem;
+        font-style: italic;
+      }
+
+      .hero-panel {
+        position: relative;
+        overflow: hidden;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.9)),
+          radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 34%);
+      }
+
+      .hero-logo-card {
+        position: relative;
+        display: grid;
+        place-items: center;
+        gap: 1rem;
+        min-height: 260px;
+        padding: 1.4rem;
+        border-radius: 18px;
+        border: 1px dashed #cdd7e3;
+        background: linear-gradient(180deg, rgba(252,251,247,0.92), rgba(255,255,255,0.9));
+        overflow: hidden;
+      }
+
+      .hero-logo-card::before {
+        content: '';
+        position: absolute;
+        inset: 12% 18%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0.02) 40%, transparent 68%);
+        filter: blur(8px);
+        animation: logoAura 4.8s ease-in-out infinite;
+      }
+
+      .hero-logo-card::after {
+        content: '';
+        position: absolute;
+        width: 140%;
+        height: 2px;
+        left: -20%;
+        top: 76%;
+        background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.14), transparent);
+        transform: translateY(0);
+      }
+
+      .hero-logo-ring {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .hero-logo-ring span {
+        position: absolute;
+        border-radius: 999px;
+        border: 1px solid rgba(37, 99, 235, 0.14);
+        animation: orbitPulse 5.2s ease-in-out infinite;
+      }
+
+      .hero-logo-ring span:nth-child(1) {
+        inset: 12% 8%;
+        animation-delay: 0s;
+      }
+
+      .hero-logo-ring span:nth-child(2) {
+        inset: 22% 16%;
+        border-color: rgba(4, 120, 87, 0.14);
+        animation-delay: 0.9s;
+      }
+
+      .hero-logo-ring span:nth-child(3) {
+        inset: 34% 24%;
+        border-color: rgba(180, 83, 9, 0.12);
+        animation-delay: 1.8s;
       }
 
       .hero-logo {
+        position: relative;
+        z-index: 1;
+        width: min(280px, 78%);
+        object-fit: contain;
+        filter: drop-shadow(0 16px 30px rgba(15, 23, 42, 0.12));
+        animation: logoFloat 5.5s ease-in-out infinite;
+      }
+
+      .hero-logo-caption {
+        position: relative;
+        z-index: 1;
         text-align: center;
-        margin-bottom: 2rem;
       }
 
-      .hero-logo-badge {
-        display: inline-block;
-        padding: 1rem 1.2rem;
-        border: 1px solid var(--border-color);
-        background: rgba(255,255,255,0.75);
-        border-radius: 10px;
-      }
-
-      .hero-logo-badge strong {
+      .hero-logo-caption strong {
         display: block;
-        font-family: var(--font-mono);
+        color: var(--heading-color);
+        font-size: 0.92rem;
         letter-spacing: 1px;
       }
 
-      .hero-logo-badge span {
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        color: #475569;
+      .hero-logo-caption span {
+        display: block;
+        color: #64748b;
+        font-size: 0.72rem;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.85rem;
+        margin-top: 1.25rem;
+      }
+
+      .stat-card {
+        padding: 0.95rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.85);
+        border: 1px solid #e5edf6;
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .stat-value {
+        display: block;
+        margin-bottom: 0.3rem;
+        color: var(--heading-color);
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .stat-label {
+        color: #64748b;
+        font-size: 0.68rem;
+        line-height: 1.45;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+      }
+
+      .micro-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.6rem;
+      }
+
+      .micro-card {
+        padding: 1rem 1.05rem;
+        transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      }
+
+      .micro-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(37, 99, 235, 0.2);
+      }
+
+      .micro-card h3 {
+        margin-bottom: 0.45rem;
+        font-size: 1rem;
+      }
+
+      .micro-copy {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        color: var(--blue-cog);
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
       }
 
       .cta-group {
         display: flex;
-        gap: 1rem;
         flex-wrap: wrap;
-        margin-top: 2rem;
+        gap: 0.85rem;
+        margin-top: 1.8rem;
       }
 
       .btn {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 48px;
+        padding: 0.92rem 1.2rem;
+        border-radius: 12px;
         text-decoration: none;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
-        font-size: 0.82rem;
+        letter-spacing: 0.5px;
+        font-size: 0.78rem;
         font-weight: 700;
-        border-radius: 6px;
-        padding: 0.85rem 1.3rem;
-        transition: 0.2s ease;
-        cursor: pointer;
         border: 1px solid transparent;
+        transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-soft);
       }
 
       .btn-primary {
@@ -253,139 +604,241 @@
         border-color: var(--heading-color);
       }
 
+      .btn-primary:hover {
+        background: var(--blue-cog);
+        border-color: var(--blue-cog);
+      }
+
       .btn-outline {
-        background: transparent;
+        background: rgba(255,255,255,0.4);
         color: var(--heading-color);
         border-color: var(--heading-color);
       }
 
-      .btn:hover {
-        transform: translateY(-1px);
+      .btn-outline:hover {
         background: var(--blue-cog);
         border-color: var(--blue-cog);
         color: #fff;
       }
 
-      .lab-note,
-      .step-card,
-      .plan-card,
-      .lead-form,
-      .contact-card {
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
+      .btn-soft {
+        background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(4,120,87,0.08));
+        color: var(--heading-color);
+        border-color: rgba(37,99,235,0.12);
       }
 
-      .lab-note {
-        padding: 1.5rem 1.75rem;
-        margin: 1.75rem 0;
+      .section-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.84fr);
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .info-card,
+      .founder-panel,
+      .ebook-note,
+      .lead-form,
+      .contact-card,
+      .contact-meta {
+        padding: 1.45rem;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 0.7rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--blue-cog);
       }
 
       .diagram-flow {
+        position: relative;
+        overflow: hidden;
+        padding: 1.2rem;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
-        align-items: stretch;
-        margin: 2rem 0;
+        gap: 0.85rem;
+      }
+
+      .diagram-flow::before {
+        content: '';
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        top: 50%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.15), transparent);
+        z-index: 0;
       }
 
       .flow-card {
-        padding: 1rem;
-        background: rgba(255,255,255,0.9);
-        border: 1px dashed #cbd5e1;
-        border-radius: 8px;
+        position: relative;
+        z-index: 1;
+        padding: 1rem 0.9rem;
         text-align: center;
+        border-radius: 14px;
+        border: 1px dashed #cdd7e3;
+        background: rgba(255,255,255,0.95);
         font-size: 0.92rem;
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
+      }
+
+      .flow-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
       }
 
       .flow-card strong {
         display: block;
-        margin-bottom: 0.4rem;
-        font-family: var(--font-mono);
-        font-size: 0.82rem;
+        margin-bottom: 0.35rem;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+      }
+
+      .lab-note {
+        padding: 1.35rem 1.5rem;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.4rem;
       }
 
       .step-card {
-        padding: 1rem 1.2rem;
-        margin-bottom: 1rem;
+        position: relative;
+        overflow: hidden;
+        padding: 1.12rem 1.2rem 1.12rem 1.3rem;
         border-left: 4px solid var(--blue-cog);
+        transition: transform 0.22s ease, box-shadow 0.22s ease;
+      }
+
+      .step-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(37,99,235,0.04), transparent 38%);
+        pointer-events: none;
+      }
+
+      .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
       }
 
       .step-card strong {
-        font-family: var(--font-mono);
         color: var(--blue-cog);
       }
 
       .badge {
         display: inline-block;
-        padding: 0.25rem 0.55rem;
+        margin: 0 0.45rem 0.5rem 0;
+        padding: 0.28rem 0.58rem;
+        border-radius: 999px;
         background: #e2e8f0;
         color: #334155;
-        border-radius: 999px;
-        font-size: 0.75rem;
-        margin: 0 0.5rem 0.5rem 0;
+        font-size: 0.72rem;
+      }
+
+      .badge.success {
+        background: rgba(4,120,87,0.1);
+        color: var(--green-valid);
       }
 
       .plans-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.2rem;
-        margin-top: 2rem;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
       }
 
       .plan-card {
+        position: relative;
+        overflow: hidden;
         padding: 1.4rem;
         display: flex;
         flex-direction: column;
+        transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+      }
+
+      .plan-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(37, 99, 235, 0.24);
+      }
+
+      .plan-card::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 4px;
+        background: linear-gradient(90deg, rgba(37,99,235,0.8), rgba(4,120,87,0.8));
+        transform: scaleX(0.22);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .plan-card:hover::after {
+        transform: scaleX(1);
       }
 
       .plan-highlight {
-        border-width: 2px;
         border-color: var(--green-valid);
-        position: relative;
+        border-width: 2px;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95)),
+          radial-gradient(circle at top right, rgba(4,120,87,0.08), transparent 34%);
       }
 
       .plan-highlight::before {
-        content: 'MAIS COMPLETO';
+        content: 'Mais completo';
         position: absolute;
         top: -12px;
         left: 1rem;
+        padding: 0.24rem 0.55rem;
+        border-radius: 8px;
         background: var(--green-valid);
         color: #fff;
-        font-size: 0.68rem;
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-        font-family: var(--font-mono);
+        font-size: 0.66rem;
         font-weight: 700;
+        text-transform: uppercase;
         letter-spacing: 0.8px;
       }
 
+      .plan-topline {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+
       .plan-dot {
-        display: inline-block;
         width: 9px;
         height: 9px;
         border-radius: 50%;
-        margin-right: 0.5rem;
-        vertical-align: middle;
+        display: inline-block;
       }
 
       .plan-desc {
+        min-height: 54px;
+        color: var(--muted-color);
         font-style: italic;
-        color: #475569;
-        min-height: 48px;
       }
 
       .plan-card ul {
         list-style: none;
         padding: 0;
-        margin: 0 0 1.25rem;
+        margin: 0 0 1.2rem;
         flex-grow: 1;
       }
 
       .plan-card li {
         position: relative;
+        margin-bottom: 0.48rem;
         padding-left: 1rem;
-        margin-bottom: 0.5rem;
         font-size: 0.95rem;
       }
 
@@ -401,97 +854,234 @@
       }
 
       .price strong {
-        font-size: 1.6rem;
+        font-size: 1.65rem;
         color: var(--heading-color);
       }
 
       .price-unit {
-        color: #64748b;
-        font-size: 0.9rem;
         margin-left: 0.35rem;
+        color: #64748b;
+        font-size: 0.84rem;
       }
 
       .plan-note {
+        margin-top: 0.9rem;
         color: #64748b;
-        font-size: 0.74rem;
-        margin-top: 1rem;
+        font-size: 0.72rem;
         text-align: center;
       }
 
-      .lead-form {
-        padding: 1.8rem;
+      .cta-band {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.4rem;
+        padding: 1.25rem 1.4rem;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(4, 120, 87, 0.06));
+      }
+
+      .cta-band p {
+        margin: 0;
+      }
+
+      .ebook-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 1.4rem;
+        align-items: start;
+      }
+
+      .ebook-note {
+        background: var(--paper-color);
+      }
+
+      .ebook-note ul {
+        margin: 1rem 0 0;
+        padding-left: 1.1rem;
+      }
+
+      .ebook-note li {
+        margin-bottom: 0.55rem;
       }
 
       .lead-form label {
         display: block;
-        font-size: 0.78rem;
-        font-weight: 700;
         margin-bottom: 0.35rem;
         color: var(--heading-color);
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .field-full {
+        grid-column: 1 / -1;
       }
 
       .lead-form input,
       .lead-form textarea {
         width: 100%;
-        border: none;
-        border-bottom: 1px solid #94a3b8;
-        border-radius: 0;
-        background: transparent;
-        padding: 0.65rem 0;
-        margin-bottom: 1.35rem;
+        margin-bottom: 0.2rem;
+        padding: 0.82rem 0.9rem;
+        border-radius: 12px;
+        border: 1px solid #c7d3df;
+        background: rgba(255,255,255,0.86);
+        color: var(--text-color);
         font-family: var(--font-serif);
         font-size: 1rem;
-        color: var(--text-color);
         outline: none;
+        transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
       }
 
       .lead-form textarea {
+        min-height: 130px;
         resize: vertical;
-        min-height: 110px;
       }
 
       .lead-form input:focus,
       .lead-form textarea:focus {
-        border-bottom-color: var(--blue-cog);
+        border-color: var(--blue-cog);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+        transform: translateY(-1px);
+      }
+
+      .helper-text {
+        margin-top: 0.9rem;
+        color: #64748b;
+        font-size: 0.84rem;
       }
 
       .form-status {
-        margin-top: 1rem;
-        font-size: 0.95rem;
+        margin-top: 0.95rem;
+        min-height: 1.4rem;
+        font-size: 0.92rem;
       }
 
-      .form-status.error { color: #b91c1c; }
       .form-status.loading { color: #475569; }
       .form-status.success { color: var(--green-valid); }
+      .form-status.error { color: #b91c1c; }
 
       #ebook-success {
         display: none;
+        padding: 1.6rem;
         text-align: center;
-        padding: 2.2rem 1.5rem;
         background: #f0fdf4;
         border: 1px solid #bbf7d0;
-        border-radius: 8px;
+        border-radius: 18px;
+        box-shadow: var(--shadow-soft);
       }
 
-      .contact-card {
-        padding: 1.5rem;
+      .founder-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+        gap: 1.5rem;
+      }
+
+      .founder-panel {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .founder-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(37,99,235,0.04), transparent 40%);
+        pointer-events: none;
+      }
+
+      .topline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-bottom: 0.8rem;
+        color: var(--heading-color);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+
+      .topline::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--blue-cog), var(--green-valid));
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+        gap: 1.2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: start;
+        gap: 0.85rem;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid rgba(219, 228, 238, 0.75);
+      }
+
+      .contact-item:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .contact-icon {
+        flex: 0 0 auto;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(4,120,87,0.1));
+        color: var(--heading-color);
+        font-size: 0.9rem;
+      }
+
+      .contact-meta {
+        background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.96));
       }
 
       footer {
+        margin-top: 1rem;
+        padding: 2.5rem 0 0.65rem;
         border-top: 1px solid var(--border-color);
-        padding: 2rem 0 3rem;
         text-align: center;
         color: #64748b;
         font-family: var(--font-mono);
-        font-size: 0.82rem;
+        font-size: 0.8rem;
+      }
+
+      .footer-brand {
+        position: relative;
+        width: 62px;
+        margin: 0 auto 1rem;
+        padding: 10px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .footer-brand img {
+        animation: logoFloat 6s ease-in-out infinite;
       }
 
       .footer-links {
-        margin-top: 1rem;
         display: flex;
-        gap: 1rem;
         justify-content: center;
+        gap: 1rem;
         flex-wrap: wrap;
+        margin-top: 1rem;
       }
 
       .footer-links a {
@@ -499,312 +1089,582 @@
         color: inherit;
       }
 
-      @media (max-width: 860px) {
-        body {
-          padding: 20px 24px 20px 42px;
+      @keyframes spinHalo {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-7px) scale(1.008); }
+      }
+
+      @keyframes logoAura {
+        0%, 100% { transform: scale(0.96); opacity: 0.7; }
+        50% { transform: scale(1.04); opacity: 1; }
+      }
+
+      @keyframes orbitPulse {
+        0%, 100% { transform: scale(0.98); opacity: 0.35; }
+        50% { transform: scale(1.02); opacity: 0.7; }
+      }
+
+      @media (max-width: 1140px) {
+        .plans-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .micro-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 920px) {
+        body::before {
+          left: 18px;
+        }
+
+        .page-shell {
+          padding: 0 24px 42px 42px;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: calc(100% + 8px);
+          right: 0;
+          left: 0;
+          padding: 1rem;
+          border: 1px solid var(--border-color);
+          border-radius: 16px;
+          background: rgba(252, 251, 247, 0.98);
+          box-shadow: var(--shadow-soft);
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-links.is-open {
+          display: flex;
+        }
+
+        .hero-grid,
+        .section-grid,
+        .ebook-grid,
+        .contact-grid,
+        .steps-grid,
+        .hero-stats,
+        .founder-layout {
+          grid-template-columns: 1fr;
         }
 
         .diagram-flow {
           grid-template-columns: 1fr;
         }
 
-        .menu-toggle { display: inline-block; }
-
-        .nav-links {
+        .diagram-flow::before {
           display: none;
-          position: absolute;
-          top: 100%;
-          right: 0;
-          left: 0;
-          padding: 1rem 0;
-          background: rgba(252, 251, 247, 0.99);
-          border-bottom: 1px solid var(--border-color);
+        }
+
+        .cta-band {
           flex-direction: column;
           align-items: flex-start;
         }
+      }
 
-        .nav-links.is-open { display: flex; }
+      @media (max-width: 640px) {
+        body {
+          line-height: 1.66;
+        }
+
+        .page-shell {
+          padding: 0 16px 32px 32px;
+        }
+
+        body::before {
+          left: 12px;
+          width: 2px;
+        }
+
+        nav {
+          gap: 0.75rem;
+          margin-bottom: 1.8rem;
+        }
+
+        .brand-logo-wrap {
+          width: 48px;
+          height: 48px;
+          border-radius: 14px;
+        }
+
+        .lab-brand-text {
+          font-size: 0.68rem;
+        }
+
+        .lab-brand-text span {
+          font-size: 0.49rem;
+          letter-spacing: 1.2px;
+        }
+
+        .hero-copy,
+        .hero-panel,
+        .lead-form,
+        .contact-card,
+        .contact-meta,
+        .ebook-note,
+        .lab-note,
+        .info-card,
+        .plan-card,
+        .cta-band,
+        .founder-panel,
+        .micro-card {
+          padding: 1.15rem;
+          border-radius: 18px;
+        }
+
+        .hero-logo-card {
+          min-height: 220px;
+          padding: 1rem;
+        }
+
+        .hero-logo {
+          width: min(220px, 82%);
+        }
+
+        .field-grid,
+        .plans-grid,
+        .micro-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .cta-group {
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
       }
     </style>
   </head>
   <body>
-    <nav>
-      <a href="#hero" class="lab-brand" aria-label="LaborIA Academy">
-        <div class="brand-mark">LA</div>
-        <div class="lab-brand-text">
-          LaborIA Academy
-          <span>Scientific Methodology Academy</span>
-        </div>
-      </a>
-
-      <button class="menu-toggle" id="menu-btn" aria-label="Abrir menu">☰</button>
-
-      <div class="nav-links" id="nav-links">
-        <a href="#conceito">Conceito</a>
-        <a href="#funcionamento">Como funciona</a>
-        <a href="#fundador">Quem conduz</a>
-        <a href="#modulos">Planos</a>
-        <a href="#ebook">E-book</a>
-        <a href="#contato">Contato</a>
-      </div>
-    </nav>
-
-    <main>
-      <section id="hero">
-        <div class="hero-logo">
-          <div class="hero-logo-badge">
-            <strong>LABORATÓRIO DE PENSAMENTO APLICADO</strong>
-            <span>IA e Data Analysis</span>
+    <div class="page-shell">
+      <nav class="reveal is-visible">
+        <a href="#hero" class="lab-brand" aria-label="LaborIA Academy">
+          <div class="brand-logo-wrap">
+            <img src="Logo.png" alt="Logo da LaborIA Academy" class="brand-logo" />
           </div>
-        </div>
-
-        <div class="marker hipotese">Hipótese inicial</div>
-        <h1>O Cérebro Digital: resolva problemas reais com IA</h1>
-        <p class="hero-subtitle">
-          Uma formação prática para aplicar inteligência artificial no que realmente importa para você.
-        </p>
-
-        <p>
-          A LaborIA nasce de uma ideia simples: o método científico não serve apenas para laboratórios — ele é uma das formas mais eficazes de resolver problemas complexos.
-        </p>
-        <p>
-          Aqui, a IA não é tratada como um oráculo que entrega respostas prontas. Ela é utilizada como ferramenta de estruturação do pensamento.
-        </p>
-        <p>
-          É o que chamamos de <strong>Cérebro Digital</strong>: um modelo em que você aprende a organizar o raciocínio, estruturar problemas com clareza, testar soluções e iterar com método.
-        </p>
-
-        <div class="cta-group">
-          <a href="#ebook" class="btn btn-primary">Baixar e-book gratuito</a>
-          <a href="#modulos" class="btn btn-outline">Ver módulos</a>
-          <a href="https://wa.me/5531996239909" target="_blank" rel="noopener" class="btn btn-outline">Falar no WhatsApp</a>
-        </div>
-      </section>
-
-      <section id="conceito">
-        <h2>O que é a LaborIA Academy</h2>
-        <p>
-          A LaborIA Academy é um laboratório de aplicação prática de IA. Expandimos a lógica laboratorial rigorosa para qualquer realidade profissional. O foco não está em ensinar ferramentas isoladas, mas em usar a inteligência artificial como organizadora do pensamento e apoio cognitivo para solucionar problemas reais, com conteúdo e mentoria estruturada.
-        </p>
-
-        <div class="diagram-flow">
-          <div class="flow-card"><strong>Problema</strong>Situação real, ambígua e concreta</div>
-          <div class="flow-card"><strong>Estrutura</strong>Contexto, dados e hipóteses</div>
-          <div class="flow-card"><strong>IA</strong>Organização e teste assistido</div>
-          <div class="flow-card"><strong>Validação</strong>Verificação crítica e evidência</div>
-          <div class="flow-card"><strong>Decisão</strong>Ação humana com clareza</div>
-        </div>
-
-        <div class="lab-note">
-          <div class="marker teste">Nota de processo</div>
-          <p style="margin-bottom: 0; font-weight: 600;">
-            “A IA funciona como uma extensão cognitiva dentro de um processo controlado.”
-          </p>
-        </div>
-      </section>
-
-      <section id="funcionamento">
-        <h2>Como funciona</h2>
-        <p>
-          Você não precisa aprender dezenas de ferramentas irrelevantes antes de agir. Aprenda o que precisa, no momento em que precisa, para resolver o seu contexto específico.
-        </p>
-
-        <div class="step-card"><strong>01.</strong> Acesse o material introdutório gratuito (e-book zero).</div>
-        <div class="step-card"><strong>02.</strong> Escolha os módulos que fazem sentido para o seu contexto.</div>
-        <div class="step-card"><strong>03.</strong> Participe de mentorias práticas vinculadas à aquisição.</div>
-        <div class="step-card"><strong>04.</strong> Traga seu problema real para a mesa do laboratório.</div>
-        <div class="step-card"><strong>05.</strong> Construa soluções reais durante o processo.</div>
-
-        <div class="lab-note" style="border-color: var(--blue-cog);">
-          <p style="margin-bottom: 0; font-size: 1.08rem; color: var(--blue-cog); font-weight: 700;">
-            Você não aprende primeiro para depois aplicar. Você aplica enquanto aprende.
-          </p>
-        </div>
-      </section>
-
-      <section id="fundador">
-        <h2>Quem conduz o laboratório</h2>
-        <div class="lab-note">
-          <div>
-            <span class="badge">Experiência aplicada</span>
-            <span class="badge">Projetos com IA</span>
-            <span class="badge">Resolução de problemas reais</span>
+          <div class="lab-brand-text">
+            LaborIA Academy
+            <span>Scientific Methodology Academy</span>
           </div>
+        </a>
 
-          <p>
-            Farmacêutico bioquímico com atuação em laboratório de alta complexidade, especializado em histocompatibilidade e transplantes. A base técnica vem de um ambiente onde dados, processos críticos e tomada de decisão sob pressão são parte da rotina diária.
-          </p>
-          <p>
-            Atua com inteligência artificial aplicada à análise de dados, construção de soluções com LLMs, RAG, embeddings, modelagem vetorial, automação de processos e estruturação de conhecimento. O foco é prático: resolver problemas reais em ambientes técnicos e complexos.
-          </p>
-          <p>
-            A experiência em laboratório — onde cada resultado precisa ser rastreável, verificável e reprodutível — é a origem do método da LaborIA Academy.
-          </p>
-          <p style="margin-bottom: 0; font-weight: 700; color: var(--heading-color);">
-            “Mais do que ensinar ferramentas, o foco é usar inteligência artificial para construir soluções reais.”
-          </p>
+        <button class="menu-toggle" id="menu-btn" aria-label="Abrir menu">☰</button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="#conceito">Conceito</a>
+          <a href="#funcionamento">Como funciona</a>
+          <a href="#fundador">Quem conduz</a>
+          <a href="#modulos">Planos</a>
+          <a href="#ebook">E-book</a>
+          <a href="#contato">Contato</a>
         </div>
-      </section>
+      </nav>
 
-      <section id="modulos">
-        <div class="marker resultado">Escada de valor</div>
-        <h2>Escolha o nível de profundidade para o seu problema</h2>
-        <p class="hero-subtitle" style="font-size: 1.05rem;">
-          Da introdução ao desenvolvimento de uma solução real — com aplicação prática e mentoria.
-        </p>
+      <main>
+        <section id="hero">
+          <div class="hero-grid">
+            <div class="hero-copy reveal is-visible">
+              <div class="marker hipotese">Hipótese inicial</div>
+              <h1>O Cérebro Digital: resolva problemas reais com IA</h1>
+              <p class="hero-subtitle">
+                Uma formação prática para aplicar inteligência artificial no que realmente importa para você, com método,
+                clareza analítica e validação crítica.
+              </p>
+              <p>
+                A LaborIA Academy parte de uma premissa simples: problemas reais exigem estrutura, não apenas ferramentas.
+                Aqui, a IA deixa de ser espetáculo e passa a funcionar como ampliação cognitiva dentro de um processo disciplinado.
+              </p>
+              <p>
+                O foco não está em consumir tendências, mas em aprender a organizar contexto, formular hipóteses,
+                testar caminhos e transformar raciocínio em solução aplicável.
+              </p>
 
-        <div class="plans-grid">
-          <article class="plan-card">
-            <div><span class="plan-dot" style="background: var(--blue-cog);"></span><span class="badge">Entrada</span></div>
-            <h3>Laboratório Aberto</h3>
-            <p class="plan-desc">Uma introdução prática para entender como aplicar IA no seu contexto.</p>
-            <ul>
-              <li>1 encontro ao vivo (1h a 1h30)</li>
-              <li>Acesso ao e-book e material inicial</li>
-              <li>Visão prática do método</li>
-              <li><strong>Grupo de até 20 pessoas</strong></li>
-            </ul>
-            <div class="price"><strong>R$ 79</strong><span class="price-unit">/pessoa</span></div>
-            <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20participar%20do%20Laboratório%20Aberto." target="_blank" rel="noopener" class="btn btn-outline">Começar agora</a>
-            <p class="plan-note">Perfeito para dar o primeiro passo.</p>
-          </article>
+              <div class="cta-group">
+                <a href="#ebook" class="btn btn-primary">Baixar e-book gratuito</a>
+                <a href="#modulos" class="btn btn-outline">Ver estrutura</a>
+                <a href="https://wa.me/5531996239909" target="_blank" rel="noopener" class="btn btn-soft">Falar no WhatsApp</a>
+              </div>
 
-          <article class="plan-card">
-            <div><span class="plan-dot" style="background: var(--green-valid);"></span><span class="badge">Aplicação</span></div>
-            <h3>Laboratório Guiado</h3>
-            <p class="plan-desc">Aplicação inicial em um problema real com acompanhamento.</p>
-            <ul>
-              <li>Acesso a 1 ou 2 módulos</li>
-              <li>2 encontros ao vivo (1h30 cada)</li>
-              <li>Orientação prática com IA</li>
-              <li><strong>Grupo de até 8 pessoas</strong></li>
-            </ul>
-            <div class="price"><strong>R$ 350</strong><span class="price-unit">/pessoa</span></div>
-            <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20o%20Laboratório%20Guiado." target="_blank" rel="noopener" class="btn btn-outline">Quero aplicar no meu caso</a>
-            <p class="plan-note">Para quem quer sair da teoria e começar a resolver.</p>
-          </article>
+              <div class="micro-grid">
+                <article class="micro-card reveal" data-delay="1">
+                  <span class="micro-copy">Método</span>
+                  <h3>Estrutura antes da automação</h3>
+                  <p>Você aprende a pensar melhor com IA, não apenas a usá-la como atalho.</p>
+                </article>
+                <article class="micro-card reveal" data-delay="2">
+                  <span class="micro-copy">Aplicação</span>
+                  <h3>Problemas reais no centro</h3>
+                  <p>O aprendizado parte do seu contexto profissional, projeto ou desafio concreto.</p>
+                </article>
+                <article class="micro-card reveal" data-delay="3">
+                  <span class="micro-copy">Rigor</span>
+                  <h3>Validação crítica</h3>
+                  <p>A resposta da IA não encerra o processo. Ela entra na cadeia de análise e decisão.</p>
+                </article>
+              </div>
+            </div>
 
-          <article class="plan-card">
-            <div><span class="plan-dot" style="background: var(--orange-alert);"></span><span class="badge">Aprofundamento</span></div>
-            <h3>Pacote Foco</h3>
-            <p class="plan-desc">Desenvolvimento estruturado de uma solução para um problema maior.</p>
-            <ul>
-              <li>Acesso a múltiplos módulos</li>
-              <li>3 encontros de mentoria prática</li>
-              <li>Foco em evolução de projeto</li>
-              <li><strong>Grupo de até 4 pessoas</strong></li>
-            </ul>
-            <div class="price"><strong>R$ 700</strong><span class="price-unit">/pessoa</span></div>
-            <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20o%20Pacote%20Foco." target="_blank" rel="noopener" class="btn btn-outline">Quero evoluir meu projeto</a>
-            <p class="plan-note">Para quem já tem um desafio mais definido.</p>
-          </article>
+            <aside class="hero-panel reveal" data-delay="1">
+              <div class="hero-logo-card">
+                <div class="hero-logo-ring" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <img src="Logo.png" alt="Identidade visual da LaborIA Academy" class="hero-logo" />
+                <div class="hero-logo-caption">
+                  <strong>LABORATÓRIO DE PENSAMENTO APLICADO</strong>
+                  <span>IA, método e resolução prática</span>
+                </div>
+              </div>
 
-          <article class="plan-card plan-highlight">
-            <div><span class="plan-dot" style="background: #dc2626;"></span><span class="badge" style="background: #fee2e2; color: #b91c1c;">Solução real</span></div>
-            <h3>Formação Completa</h3>
-            <p class="plan-desc">Construção de uma solução real com acompanhamento próximo.</p>
-            <ul>
-              <li>Acesso a todos os módulos</li>
-              <li>5 encontros de mentoria prática</li>
-              <li>Até 2h por encontro</li>
-              <li>Desenvolvimento de solução concreta</li>
-              <li><strong>Grupo de até 3 pessoas</strong></li>
-            </ul>
-            <div class="price"><strong>R$ 1500</strong><span class="price-unit">/pessoa</span></div>
-            <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20a%20Formação%20Completa." target="_blank" rel="noopener" class="btn btn-primary" style="background: var(--green-valid); border-color: var(--green-valid);">Quero a formação completa</a>
-            <p class="plan-note">Para quem quer resolver de forma estruturada e definitiva.</p>
-          </article>
-        </div>
-
-        <div class="lab-note" style="text-align: center; background: #fffef7;">
-          <div class="marker teste">Nota de processo</div>
-          <p style="margin-bottom: 0; font-size: 0.95rem;">
-            Quanto menor o grupo, maior o nível de profundidade e personalização.
-          </p>
-        </div>
-      </section>
-
-      <section id="ebook">
-        <div class="marker resultado">Material introdutório</div>
-        <h2>E-book 0 — O início do Cérebro Digital</h2>
-        <p class="hero-subtitle" style="font-size: 1.05rem;">
-          Um material introdutório para entender como usar IA de forma prática, aplicada e orientada a problemas reais.
-        </p>
-        <p>
-          Este e-book apresenta a lógica do curso, a visão da LaborIA Academy e os primeiros fundamentos do uso prático de IA. Entenda a noção de cérebro digital como método de organização do pensamento e a transposição do rigor laboratorial para os problemas do mundo real.
-        </p>
-
-        <div class="lead-form" id="form-container">
-          <form id="lead-form">
-            <label for="nome">Nome completo</label>
-            <input type="text" id="nome" name="nome" required placeholder="Ex: João da Silva" />
-
-            <label for="email">E-mail corporativo ou pessoal</label>
-            <input type="email" id="email" name="email" required placeholder="joao@email.com" />
-
-            <label for="whatsapp">WhatsApp (opcional)</label>
-            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-9999" />
-
-            <label for="atuacao">Área de atuação</label>
-            <input type="text" id="atuacao" name="atuacao" placeholder="Ex: Gestão de Projetos, Saúde, Tecnologia..." />
-
-            <label for="interesse">Principal interesse</label>
-            <input type="text" id="interesse" name="interesse" placeholder="O que você busca na LaborIA?" />
-
-            <label for="problema">Principal dificuldade ou problema que gostaria de resolver com IA</label>
-            <textarea id="problema" name="problema" rows="4" placeholder="Descreva brevemente o desafio que você enfrenta hoje..."></textarea>
-
-            <button type="submit" id="submit-button" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
-              Quero receber o e-book
-            </button>
-
-            <div id="form-status" class="form-status"></div>
-          </form>
-        </div>
-
-        <div id="ebook-success">
-          <h3 style="color: var(--green-valid); margin-top: 0;">Solicitação confirmada</h3>
-          <p>
-            Seu cadastro foi enviado com sucesso. Se o material não chegar em alguns minutos, verifique spam ou promoções.
-          </p>
-          <div class="cta-group" style="justify-content: center;">
-            <a href="https://wa.me/5531996239909" target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp</a>
-            <a href="mailto:laboria.tech@gmail.com" class="btn btn-outline">Preciso de ajuda</a>
+              <div class="hero-stats">
+                <div class="stat-card reveal" data-delay="2">
+                  <span class="stat-value">IA + método</span>
+                  <span class="stat-label">Uso estruturado, não improvisado</span>
+                </div>
+                <div class="stat-card reveal" data-delay="3">
+                  <span class="stat-value">Aplicação real</span>
+                  <span class="stat-label">Projetos, rotina e decisão</span>
+                </div>
+                <div class="stat-card reveal" data-delay="4">
+                  <span class="stat-value">Mentoria</span>
+                  <span class="stat-label">Acompanhamento orientado ao problema</span>
+                </div>
+              </div>
+            </aside>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="contato">
-        <h2>Entre em contato</h2>
-        <div class="contact-card">
-          <p>
-            Se quiser entender qual módulo faz mais sentido para o seu caso ou tirar dúvidas sobre a mentoria prática, a porta do laboratório está aberta.
-          </p>
+        <section id="conceito" class="reveal">
+          <div class="section-grid">
+            <div class="info-card">
+              <div class="eyebrow">Conceito</div>
+              <h2>O que é a LaborIA Academy</h2>
+              <p>
+                A LaborIA Academy é um laboratório de aplicação prática de inteligência artificial. Em vez de ensinar um
+                conjunto disperso de ferramentas, ela organiza a aprendizagem em torno de uma lógica mais madura:
+                compreender o problema, estruturar contexto, iterar com método e validar a solução antes da decisão.
+              </p>
+              <p>
+                A estética de caderno permanece como linguagem visual, mas o posicionamento é profissional: um ambiente
+                de raciocínio aplicado, onde a IA funciona como extensão cognitiva e não como substituto do discernimento.
+              </p>
+            </div>
 
-          <div class="cta-group">
-            <a href="https://wa.me/5531996239909" target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp</a>
-            <a href="mailto:laboria.tech@gmail.com" class="btn btn-outline">Enviar e-mail</a>
+            <div class="lab-note reveal" data-delay="1">
+              <div class="marker teste">Nota de processo</div>
+              <p>
+                “A IA se torna realmente útil quando entra em uma cadeia de raciocínio disciplinada.”
+              </p>
+              <p style="margin-bottom:0;">
+                O objetivo da LaborIA é transformar curiosidade difusa em método operacional.
+              </p>
+            </div>
           </div>
 
-          <div style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.9rem;">
-            <strong>WhatsApp:</strong> (31) 99623-9909<br />
-            <strong>E-mail:</strong> laboria.tech@gmail.com
+          <div class="diagram-flow reveal" data-delay="2" style="margin-top: 1.4rem;">
+            <div class="flow-card"><strong>Problema</strong> Situação concreta, ambígua e relevante.</div>
+            <div class="flow-card"><strong>Contexto</strong> Dados, objetivo, limites e variáveis.</div>
+            <div class="flow-card"><strong>IA</strong> Organização, exploração e geração assistida.</div>
+            <div class="flow-card"><strong>Validação</strong> Verificação crítica e ajuste iterativo.</div>
+            <div class="flow-card"><strong>Decisão</strong> Ação humana com maior clareza.</div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
 
-    <footer>
-      <div class="brand-mark" style="margin: 0 auto 1rem;">LA</div>
-      <p>LaborIA Academy · 2026</p>
-      <p>Scientific Methodology Academy · Laboratório de pensamento aplicado.</p>
-      <div class="footer-links">
-        <a href="#conceito">Conceito</a>
-        <a href="#funcionamento">Como funciona</a>
-        <a href="#modulos">Planos</a>
-        <a href="#ebook">E-book</a>
-      </div>
-    </footer>
+        <section id="funcionamento" class="reveal">
+          <div class="marker resultado">Fluxo de trabalho</div>
+          <h2>Como funciona</h2>
+          <p>
+            A aprendizagem é orientada por uso. Você entra pelo material introdutório, entende a lógica do método,
+            escolhe o nível de aprofundamento adequado e traz um problema real para a mesa do laboratório.
+          </p>
+
+          <div class="steps-grid">
+            <article class="step-card reveal" data-delay="1"><strong>01.</strong> Acesse o material introdutório e compreenda a lógica do Cérebro Digital.</article>
+            <article class="step-card reveal" data-delay="2"><strong>02.</strong> Identifique o problema, projeto ou rotina que precisa de mais estrutura.</article>
+            <article class="step-card reveal" data-delay="3"><strong>03.</strong> Selecione o formato de acompanhamento mais compatível com sua fase atual.</article>
+            <article class="step-card reveal" data-delay="4"><strong>04.</strong> Trabalhe com IA de forma guiada, prática e orientada à validação.</article>
+          </div>
+
+          <div class="cta-band reveal" data-delay="2">
+            <p><strong>Você não aprende primeiro para depois aplicar.</strong> Aqui, aplicação e aprendizagem acontecem no mesmo fluxo.</p>
+            <a href="#ebook" class="btn btn-primary">Começar pelo e-book</a>
+          </div>
+        </section>
+
+        <section id="fundador" class="reveal">
+          <div class="founder-layout">
+            <div class="founder-panel">
+              <div class="topline">Quem conduz o laboratório</div>
+              <h2>Experiência aplicada em ambientes complexos</h2>
+              <p>
+                A proposta da LaborIA Academy nasce de uma trajetória técnica vinculada a ambientes de alta complexidade,
+                onde rastreabilidade, consistência analítica, tomada de decisão e confiabilidade processual são indispensáveis.
+              </p>
+              <p>
+                Essa experiência foi expandida para o campo da inteligência artificial aplicada, com foco em LLMs,
+                RAG, embeddings, organização de conhecimento, automação e desenho de soluções que realmente funcionem.
+              </p>
+              <p style="margin-bottom:0;">
+                O resultado é um método que combina rigor, criatividade analítica e pragmatismo: menos deslumbramento,
+                mais construção concreta.
+              </p>
+            </div>
+
+            <aside class="lab-note reveal" data-delay="1">
+              <div style="margin-bottom: 0.85rem;">
+                <span class="badge">Problemas reais</span>
+                <span class="badge">IA aplicada</span>
+                <span class="badge success">Validação crítica</span>
+              </div>
+              <p>
+                Mais do que ensinar ferramentas, a proposta é ajudar você a transformar raciocínio disperso em processo,
+                processo em solução e solução em ação consistente.
+              </p>
+            </aside>
+          </div>
+        </section>
+
+        <section id="modulos" class="reveal">
+          <div class="marker resultado">Estrutura de entrada</div>
+          <h2>Escolha o nível de profundidade para o seu momento</h2>
+          <p>
+            A escada de valor foi organizada para permitir uma entrada acessível e, ao mesmo tempo, abrir espaço para
+            percursos mais densos e personalizados.
+          </p>
+
+          <div class="plans-grid">
+            <article class="plan-card reveal" data-delay="1">
+              <div class="plan-topline">
+                <span class="plan-dot" style="background: var(--blue-cog);"></span>
+                <span class="badge">Entrada</span>
+              </div>
+              <h3>Laboratório Aberto</h3>
+              <p class="plan-desc">Introdução prática para entender como aplicar IA ao seu contexto.</p>
+              <ul>
+                <li>1 encontro ao vivo</li>
+                <li>Acesso ao e-book e material inicial</li>
+                <li>Visão prática do método</li>
+                <li>Grupo ampliado</li>
+              </ul>
+              <div class="price"><strong>R$ 79</strong><span class="price-unit">/pessoa</span></div>
+              <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20participar%20do%20Laboratório%20Aberto." target="_blank" rel="noopener" class="btn btn-outline">Começar agora</a>
+              <p class="plan-note">Perfeito para o primeiro passo.</p>
+            </article>
+
+            <article class="plan-card reveal" data-delay="2">
+              <div class="plan-topline">
+                <span class="plan-dot" style="background: var(--green-valid);"></span>
+                <span class="badge">Aplicação</span>
+              </div>
+              <h3>Laboratório Guiado</h3>
+              <p class="plan-desc">Aplicação inicial em um problema real com acompanhamento.</p>
+              <ul>
+                <li>Acesso a 1 ou 2 módulos</li>
+                <li>2 encontros ao vivo</li>
+                <li>Orientação prática</li>
+                <li>Grupo reduzido</li>
+              </ul>
+              <div class="price"><strong>R$ 350</strong><span class="price-unit">/pessoa</span></div>
+              <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20o%20Laboratório%20Guiado." target="_blank" rel="noopener" class="btn btn-outline">Quero aplicar no meu caso</a>
+              <p class="plan-note">Para sair da teoria e começar a resolver.</p>
+            </article>
+
+            <article class="plan-card reveal" data-delay="3">
+              <div class="plan-topline">
+                <span class="plan-dot" style="background: var(--orange-alert);"></span>
+                <span class="badge">Aprofundamento</span>
+              </div>
+              <h3>Pacote Foco</h3>
+              <p class="plan-desc">Desenvolvimento estruturado de uma solução para um problema maior.</p>
+              <ul>
+                <li>Acesso a múltiplos módulos</li>
+                <li>3 encontros de mentoria</li>
+                <li>Foco em projeto</li>
+                <li>Maior proximidade</li>
+              </ul>
+              <div class="price"><strong>R$ 700</strong><span class="price-unit">/pessoa</span></div>
+              <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20o%20Pacote%20Foco." target="_blank" rel="noopener" class="btn btn-outline">Quero evoluir meu projeto</a>
+              <p class="plan-note">Para quem já tem um desafio definido.</p>
+            </article>
+
+            <article class="plan-card plan-highlight reveal" data-delay="4">
+              <div class="plan-topline">
+                <span class="plan-dot" style="background: #dc2626;"></span>
+                <span class="badge">Solução real</span>
+              </div>
+              <h3>Formação Completa</h3>
+              <p class="plan-desc">Construção de uma solução real com acompanhamento próximo.</p>
+              <ul>
+                <li>Acesso a todos os módulos</li>
+                <li>5 encontros de mentoria prática</li>
+                <li>Maior densidade de trabalho</li>
+                <li>Construção de solução concreta</li>
+              </ul>
+              <div class="price"><strong>R$ 1500</strong><span class="price-unit">/pessoa</span></div>
+              <a href="https://wa.me/5531996239909?text=Olá!%20Quero%20a%20Formação%20Completa." target="_blank" rel="noopener" class="btn btn-primary">Quero a formação completa</a>
+              <p class="plan-note">Para quem quer consolidar uma solução estruturada.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="ebook" class="reveal">
+          <div class="marker resultado">Material introdutório</div>
+          <h2>E-book 0 — o início do Cérebro Digital</h2>
+          <div class="ebook-grid">
+            <aside class="ebook-note reveal" data-delay="1">
+              <div class="topline">O que você recebe</div>
+              <p>
+                Um material introdutório para compreender a lógica da LaborIA Academy e iniciar o uso da IA com mais
+                clareza, método e intencionalidade.
+              </p>
+              <ul>
+                <li>Visão conceitual do Cérebro Digital</li>
+                <li>Como estruturar problemas antes de pedir respostas</li>
+                <li>Primeiros princípios para usar IA de forma madura</li>
+                <li>Entrada acessível para os próximos módulos</li>
+              </ul>
+            </aside>
+
+            <div class="lead-form reveal" data-delay="2" id="form-container">
+              <form id="lead-form">
+                <div class="field-grid">
+                  <div>
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Ex: João da Silva" />
+                  </div>
+                  <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="voce@email.com" />
+                  </div>
+                  <div>
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" placeholder="(31) 99999-9999" />
+                  </div>
+                  <div>
+                    <label for="atuacao">Área de atuação</label>
+                    <input type="text" id="atuacao" name="atuacao" placeholder="Saúde, gestão, educação, tecnologia..." />
+                  </div>
+                  <div class="field-full">
+                    <label for="interesse">Principal interesse</label>
+                    <input type="text" id="interesse" name="interesse" placeholder="O que você busca na LaborIA?" />
+                  </div>
+                  <div class="field-full">
+                    <label for="problema">Qual problema você gostaria de resolver com IA?</label>
+                    <textarea id="problema" name="problema" placeholder="Descreva brevemente seu desafio atual..."></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" id="submit-button" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                  Quero receber o e-book
+                </button>
+                <div id="form-status" class="form-status"></div>
+                <p class="helper-text">
+                  Ao enviar, seus dados serão registrados para contato e envio do material introdutório.
+                </p>
+              </form>
+            </div>
+          </div>
+
+          <div id="ebook-success" class="reveal" data-delay="1">
+            <h3 style="margin-top: 0; color: var(--green-valid);">Solicitação confirmada</h3>
+            <p>
+              Seu interesse foi registrado com sucesso. Em seguida, você pode verificar seu e-mail ou continuar a conversa diretamente pelo WhatsApp.
+            </p>
+            <div class="cta-group" style="justify-content: center;">
+              <a href="https://wa.me/5531996239909" target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp</a>
+              <a href="mailto:laboria.tech@gmail.com" class="btn btn-outline">Preciso de ajuda</a>
+            </div>
+          </div>
+        </section>
+
+        <section id="contato" class="reveal">
+          <h2>Entre em contato</h2>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <p>
+                Se quiser entender qual formato faz mais sentido para o seu caso, discutir um projeto ou tirar dúvidas sobre
+                a mentoria prática, a porta do laboratório está aberta.
+              </p>
+
+              <div class="contact-item">
+                <div class="contact-icon">✦</div>
+                <div>
+                  <small>Conversa inicial</small>
+                  <p style="margin: 0;">Exploração do seu problema, contexto e melhor caminho de entrada.</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">↗</div>
+                <div>
+                  <small>Contato direto</small>
+                  <p style="margin: 0;">WhatsApp, e-mail e canal aberto para direcionar a próxima etapa.</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="contact-meta reveal" data-delay="1">
+              <div class="topline">Canais</div>
+              <p><strong>WhatsApp:</strong><br />(31) 99623-9909</p>
+              <p><strong>E-mail:</strong><br />laboria.tech@gmail.com</p>
+              <div class="cta-group">
+                <a href="https://wa.me/5531996239909" target="_blank" rel="noopener" class="btn btn-primary">Falar no WhatsApp</a>
+                <a href="mailto:laboria.tech@gmail.com" class="btn btn-outline">Enviar e-mail</a>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <footer class="reveal">
+        <div class="footer-brand">
+          <img src="Logo.png" alt="Logo da LaborIA" />
+        </div>
+        <p>LaborIA Academy · 2026</p>
+        <p>Scientific Methodology Academy · Laboratório de pensamento aplicado.</p>
+        <div class="footer-links">
+          <a href="#conceito">Conceito</a>
+          <a href="#funcionamento">Como funciona</a>
+          <a href="#modulos">Planos</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </footer>
+    </div>
 
     <script>
       const menuBtn = document.getElementById('menu-btn');
@@ -814,6 +1674,7 @@
       const successDiv = document.getElementById('ebook-success');
       const formStatus = document.getElementById('form-status');
       const submitButton = document.getElementById('submit-button');
+      const revealElements = document.querySelectorAll('.reveal:not(.is-visible)');
 
       if (menuBtn) {
         menuBtn.addEventListener('click', () => {
@@ -822,54 +1683,80 @@
       }
 
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', function () {
-          if (window.innerWidth <= 860) {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (!targetElement) return;
+
+          e.preventDefault();
+          if (window.innerWidth <= 920) {
             navLinks.classList.remove('is-open');
           }
+
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
 
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        );
 
-        submitButton.disabled = true;
-        submitButton.textContent = 'Enviando...';
-        formStatus.className = 'form-status loading';
-        formStatus.textContent = 'Enviando seus dados...';
+        revealElements.forEach((el) => observer.observe(el));
+      } else {
+        revealElements.forEach((el) => el.classList.add('is-visible'));
+      }
 
-        const formData = {
-          nome: document.getElementById('nome').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          whatsapp: document.getElementById('whatsapp').value.trim(),
-          atuacao: document.getElementById('atuacao').value.trim(),
-          interesse: document.getElementById('interesse').value.trim(),
-          problema: document.getElementById('problema').value.trim()
-        };
+      if (form) {
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
 
-        try {
-          await fetch('https://script.google.com/macros/s/AKfycbwl8kqOU5f8zqAF6JcTRnZYuQMLPsggNf2gpz70q_QJl0aA_NB3jm2qPdM5QeWeHVsGLw/exec', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'text/plain;charset=utf-8'
-            },
-            body: JSON.stringify(formData)
-          });
+          const formData = {
+            nome: document.getElementById('nome').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            whatsapp: document.getElementById('whatsapp').value.trim(),
+            atuacao: document.getElementById('atuacao').value.trim(),
+            interesse: document.getElementById('interesse').value.trim(),
+            problema: document.getElementById('problema').value.trim()
+          };
 
-          form.reset();
-          formStatus.className = 'form-status success';
-          formStatus.textContent = 'Cadastro enviado com sucesso.';
-          formContainer.style.display = 'none';
-          successDiv.style.display = 'block';
-        } catch (error) {
-          formStatus.className = 'form-status error';
-          formStatus.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
-          submitButton.disabled = false;
-          submitButton.textContent = 'Quero receber o e-book';
-          console.error('Erro no envio:', error);
-          return;
-        }
-      });
+          submitButton.disabled = true;
+          submitButton.style.opacity = '0.75';
+          formStatus.textContent = 'Enviando...';
+          formStatus.className = 'form-status loading';
+
+          try {
+            await fetch('https://script.google.com/macros/s/AKfycbwl8kqOU5f8zqAF6JcTRnZYuQMLPsggNf2gpz70q_QJl0aA_NB3jm2qPdM5QeWeHVsGLw/exec', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+              },
+              body: JSON.stringify(formData)
+            });
+
+            form.reset();
+            formStatus.textContent = '';
+            formContainer.style.display = 'none';
+            successDiv.style.display = 'block';
+            successDiv.classList.add('is-visible');
+          } catch (error) {
+            console.error(error);
+            formStatus.textContent = 'Não foi possível concluir o envio agora. Tente novamente em instantes.';
+            formStatus.className = 'form-status error';
+            submitButton.disabled = false;
+            submitButton.style.opacity = '1';
+          }
+        });
+      }
     </script>
   </body>
 </html>
