@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 0 – O Cérebro Digital e a Expansão Cognitiva</title>
+<style>
+  /* ===== RESET E CONFIGURAÇÕES GERAIS ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-primary: #0a0c10;
+    --bg-secondary: #11151b;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2129;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-primary: #58a6ff;
+    --accent-secondary: #3fb950;
+    --accent-tertiary: #d2991d;
+    --accent-quaternary: #f78166;
+    --border-subtle: #21262d;
+    --border-medium: #30363d;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --transition: 0.2s ease;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===== CONTAINER PRINCIPAL ===== */
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    background-color: var(--bg-primary);
+    page-break-after: always;
+  }
+
+  @media print {
+    body {
+      background-color: #fff;
+      color: #1a1a1a;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .page {
+      max-width: 100%;
+      padding: 20px 24px;
+      background-color: #fff;
+      color: #1a1a1a;
+      page-break-after: always;
+      box-shadow: none;
+    }
+    .no-print { display: none; }
+    /* override colors for print */
+    :root {
+      --bg-primary: #fff;
+      --bg-secondary: #f5f5f5;
+      --bg-card: #fafafa;
+      --bg-card-hover: #f0f0f0;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #6a6a6a;
+      --accent-primary: #1a56db;
+      --accent-secondary: #0d7a3e;
+      --border-subtle: #d0d0d0;
+      --border-medium: #b0b0b0;
+    }
+  }
+
+  /* ===== CAPA ===== */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 80vh;
+    padding: 60px 20px;
+    background: linear-gradient(160deg, #0a0c10 0%, #11151b 40%, #0d1117 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(88,166,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(63,185,80,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-container {
+    margin-bottom: 40px;
+    padding: 20px 36px;
+    background: rgba(22, 27, 34, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-lg);
+    display: inline-block;
+  }
+
+  .logo-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .logo-text .lab {
+    color: var(--accent-primary);
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  .logo-text .design {
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .logo-text .cognitivo {
+    color: var(--accent-secondary);
+    font-weight: 600;
+  }
+
+  .logo-text .inteligencia {
+    color: var(--accent-tertiary);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .logo-text .analitica {
+    color: var(--accent-quaternary);
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    margin: 32px auto;
+    border-radius: 2px;
+  }
+
+  .cover-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .cover-subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .cover-module {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 24px;
+    background: rgba(88,166,255,0.1);
+    border: 1px solid rgba(88,166,255,0.25);
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    letter-spacing: 0.5px;
+  }
+
+  .cover-footer {
+    margin-top: 50px;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  @media print {
+    .cover {
+      background: #fff;
+      min-height: 80vh;
+      color: #1a1a1a;
+    }
+    .cover::before, .cover::after { display: none; }
+    .logo-container {
+      background: #f8f8f8;
+      border: 1px solid #d0d0d0;
+      backdrop-filter: none;
+    }
+    .logo-text { color: #1a1a1a; }
+    .logo-text .lab { color: #1a56db; }
+    .logo-text .design { color: #1a1a1a; }
+    .logo-text .cognitivo { color: #0d7a3e; }
+    .logo-text .inteligencia { color: #b8860b; }
+    .logo-text .analitica { color: #c44536; }
+    .cover-title { color: #1a1a1a; }
+    .cover-subtitle { color: #4a4a4a; }
+    .cover-footer { color: #6a6a6a; }
+  }
+
+  /* ===== SEÇÕES DE CONTEÚDO ===== */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 36px 0 16px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-subtle);
+    letter-spacing: -0.2px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 28px 0 12px 0;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin: 20px 0 8px 0;
+  }
+
+  p {
+    margin-bottom: 14px;
+    color: var(--text-secondary);
+  }
+
+  strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  blockquote {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border-left: 4px solid var(--accent-primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  blockquote strong {
+    color: var(--accent-primary);
+  }
+
+  ul, ol {
+    margin: 12px 0 12px 24px;
+    color: var(--text-secondary);
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  li strong {
+    color: var(--text-primary);
+  }
+
+  /* ===== TABELAS ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  th {
+    background: var(--bg-card);
+    color: var(--accent-primary);
+    font-weight: 600;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-medium);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background: var(--bg-card-hover);
+  }
+
+  @media print {
+    th { background: #f0f0f0; color: #1a56db; border-bottom: 2px solid #b0b0b0; }
+    td { background: #fff; border-bottom: 1px solid #d0d0d0; }
+  }
+
+  /* ===== CARDS DE DESTAQUE ===== */
+  .highlight-box {
+    margin: 24px 0;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .highlight-box.warning {
+    border-left: 4px solid var(--accent-quaternary);
+    background: rgba(247,129,102,0.05);
+  }
+
+  .highlight-box.info {
+    border-left: 4px solid var(--accent-primary);
+    background: rgba(88,166,255,0.05);
+  }
+
+  .highlight-box.success {
+    border-left: 4px solid var(--accent-secondary);
+    background: rgba(63,185,80,0.05);
+  }
+
+  .highlight-box h4 {
+    margin-top: 0;
+    color: var(--text-primary);
+  }
+
+  @media print {
+    .highlight-box {
+      background: #fafafa;
+      border: 1px solid #d0d0d0;
+    }
+    .highlight-box.warning { border-left: 4px solid #c44536; }
+    .highlight-box.info { border-left: 4px solid #1a56db; }
+    .highlight-box.success { border-left: 4px solid #0d7a3e; }
+  }
+
+  /* ===== CÓDIGO / PROMPT ===== */
+  code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: var(--bg-card);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--accent-tertiary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* ===== separador de seção ===== */
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), transparent);
+    margin: 40px 0;
+    border-radius: 2px;
+  }
+
+  /* ===== ATIVIDADE ===== */
+  .activity-box {
+    margin: 30px 0;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 2px solid var(--accent-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  .activity-box h3 {
+    color: var(--accent-primary);
+    margin-top: 0;
+  }
+
+  .activity-box ol {
+    margin-left: 20px;
+  }
+
+  .activity-box li {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  /* ===== FOOTER ===== */
+  .module-footer {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .module-footer p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ===== BOTÃO DE EXPORTAÇÃO (não aparece na impressão) ===== */
+  .export-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-medium);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .export-bar button {
+    padding: 8px 18px;
+    background: var(--accent-primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .export-bar button:hover {
+    background: #4090e0;
+  }
+
+  @media print {
+    .export-bar { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- BARRA DE EXPORTAÇÃO (removida na impressão) -->
+<div class="export-bar no-print">
+  <span>📄 Visualização do PDF — pronto para exportar</span>
+  <button onclick="window.print()">🖨️ Gerar PDF / Imprimir</button>
+  <span style="font-size:12px;color:var(--text-muted);">Use "Salvar como PDF" no destino da impressora</span>
+</div>
+
+<!-- ==================== CAPA ==================== -->
+<div class="cover">
+  <div class="cover-content">
+    <!-- Logo do Laboratório -->
+    <div class="logo-container">
+      <div class="logo-text">
+        <span class="lab">LABORATÓRIO</span><br>
+        <span class="design">DE DESIGN &amp;</span><br>
+        <span class="cognitivo">COGNITIVO</span><br>
+        <span class="inteligencia">INTELIGÊNCIA</span><br>
+        <span class="analitica">ANALÍTICA</span>
+      </div>
+    </div>
+
+    <div class="cover-divider"></div>
+
+    <h1 class="cover-title">O Cérebro Digital<br>e a Expansão Cognitiva</h1>
+    <p class="cover-subtitle">IA a serviço da Inteligência de Dados e da Solução de Problemas Reais</p>
+
+    <div class="cover-module">MÓDULO 0</div>
+    <p style="margin-top:16px;font-size:16px;color:var(--text-secondary);">
+      Fundamentos de Inteligência Artificial:<br>Arcabouço Conceitual para o Cérebro Digital
+    </p>
+
+    <p class="cover-footer">Ebook Introdutório · Leitura Preparatória · Versão 1.0</p>
+  </div>
+</div>
+
+<!-- ==================== CONTEÚDO ==================== -->
+<div class="page">
+
+  <div class="section">
+    <h1>Boas-vindas ao Módulo 0</h1>
+    <p>Este ebook é o <strong>primeiro passo da sua formação</strong> em <em>O Cérebro Digital e a Expansão Cognitiva</em>. Ele foi projetado com dois objetivos claros:</p>
+    <ol>
+      <li><strong>Apresentar o método do curso</strong> — como pensamos, por que pensamos assim e o que você pode esperar como resultado.</li>
+      <li><strong>Entregar conteúdo útil desde já</strong> — porque uma formação que se propõe a resolver problemas reais não pode começar com enrolação.</li>
+    </ol>
+
+    <p>Ao final desta leitura, você terá:</p>
+    <ul>
+      <li>Clareza sobre o que significa, de fato, usar IA como expansão cognitiva.</li>
+      <li>Um mapa conceitual sólido para compreender o ecossistema da inteligência artificial.</li>
+      <li>Ferramentas de pensamento que já podem ser aplicadas para avaliar criticamente qualquer solução de IA que aparecer no seu caminho.</li>
+    </ul>
+
+    <p>Se você chegou até aqui buscando mais do que "prompts mágicos" ou "hacks de produtividade", está no lugar certo. Vamos começar.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SEÇÃO 1 -->
+  <div class="section">
+    <h2>1. Por que este curso existe</h2>
+    <p>O mercado está inundado de formações que tratam a inteligência artificial como uma caixa de ferramentas milagrosas. Basta apertar o botão certo, e o problema desaparece. Sabemos que não é assim.</p>
+
+    <blockquote>
+      <strong>A tese central deste curso é simples e direta:</strong><br>
+      A inteligência não está na ferramenta; está na forma como o uso da ferramenta é organizado.
+    </blockquote>
+
+    <p>Isso significa que a IA, por si só, não gera pensamento robusto, decisão qualificada ou conhecimento validado. Esses resultados dependem de algo que nenhum modelo pode oferecer sozinho:</p>
+    <ul>
+      <li>Um problema bem formulado;</li>
+      <li>Contexto adequado;</li>
+      <li>Dados relevantes;</li>
+      <li>Estrutura de raciocínio;</li>
+      <li>Mecanismos de checagem e validação;</li>
+      <li>Coordenação crítica entre humano e sistema.</li>
+    </ul>
+    <p>O curso inteiro é construído sobre essa base. E este Módulo 0 é o alicerce.</p>
+  </div>
+
+  <!-- SEÇÃO 2 -->
+  <div class="section">
+    <h2>2. O método: como este curso ensina</h2>
+    <p>Antes de mergulharmos no conteúdo, é essencial que você entenda <strong>como</strong> esta formação funciona. Método importa — e, se você vai confiar seu tempo e sua atenção a um curso, merece saber qual é a lógica pedagógica que o sustenta.</p>
+
+    <h3>2.1 Aprendizagem situada</h3>
+    <p>Não acreditamos em conhecimento ensinado "no vácuo". Cada conceito deste curso é ancorado em <strong>problemas reais</strong>, que poderiam acontecer no seu contexto de trabalho, pesquisa ou criação. Você não aprende "o que é prompting" — você aprende a formular prompts para resolver um desafio concreto.</p>
+    <p>Essa abordagem tem lastro científico. O trabalho clássico de Brown, Collins e Duguid (1989) sobre <em>aprendizagem situada</em> demonstra que o conhecimento só se torna funcional quando aprendido em contexto de uso. É exatamente isso que faremos.</p>
+
+    <h3>2.2 Modelagem do raciocínio</h3>
+    <p>O curso não esconde o pensamento por trás das decisões. Pelo contrário: <strong>tornamos o raciocínio visível</strong>. Inspirados pelo modelo de <em>cognitive apprenticeship</em> (Collins, Brown e Newman, 1988), demonstramos como um problema é decomposto, como uma estratégia é escolhida, como uma saída de IA é validada. Você vê o processo, pratica com apoio e gradualmente ganha autonomia.</p>
+
+    <h3>2.3 Progressão de autonomia</h3>
+    <p>A estrutura do curso foi desenhada para que você passe de um estágio de <strong>compreensão guiada</strong> para <strong>aplicação independente</strong>:</p>
+    <ul>
+      <li>Módulos iniciais fornecem fundação conceitual.</li>
+      <li>Módulos intermediários introduzem técnicas e ferramentas.</li>
+      <li>Módulos avançados exigem que você desenhe soluções, valide resultados e critique saídas.</li>
+    </ul>
+
+    <h3>2.4 Suficiente para resultados</h3>
+    <p>Este curso não é uma introdução superficial, nem uma especialização hipertecnicista. Seguimos um princípio claro:</p>
+    <blockquote>Ensinar o suficiente, com densidade e estrutura, para gerar resultado real.</blockquote>
+    <p>Você não precisa virar cientista de dados para usar dados com inteligência. Não precisa ser engenheiro de software para orquestrar ferramentas. Mas precisa compreender os fundamentos que permitem tomar boas decisões — e é isso que oferecemos.</p>
+  </div>
+
+  <!-- SEÇÃO 3 -->
+  <div class="section">
+    <h2>3. O que esperar deste Módulo 0</h2>
+    <p>O Módulo 0 é o <strong>nivelador conceitual</strong> do curso. Ele existe para que todos os participantes — independentemente da formação anterior — compartilhem um mesmo vocabulário e uma mesma compreensão de base sobre inteligência artificial.</p>
+    <p>Ao final deste módulo, você será capaz de:</p>
+    <ul>
+      <li>Compreender o que se entende por IA em sentido amplo e aplicado.</li>
+      <li>Distinguir entre algoritmo, modelo, dado, treinamento, inferência, automação e aprendizado.</li>
+      <li>Reconhecer diferenças entre IA simbólica, aprendizado de máquina, aprendizado profundo e IA generativa.</li>
+      <li>Identificar o papel central dos dados.</li>
+      <li>Diferenciar automação simples de sistemas adaptativos.</li>
+      <li>Situar o conceito de <strong>Cérebro Digital</strong> como arquitetura cognitiva híbrida.</li>
+    </ul>
+    <p>Parece ambicioso? Vamos tornar tudo isso concreto a partir de agora.</p>
+  </div>
+
+</div>
+
+<div class="page">
+
+  <!-- SEÇÃO 4 -->
+  <div class="section">
+    <h2>4. O que é Inteligência Artificial — sem hype, com clareza</h2>
+
+    <h3>4.1 Uma definição funcional</h3>
+    <p>Se você busca uma definição de IA que sirva para pensar e agir — e não para vender produto —, pode usar esta:</p>
+    <blockquote>Inteligência Artificial é um campo da computação dedicado à construção de sistemas que realizam tarefas que, se executadas por um ser humano, exigiriam capacidades como percepção, raciocínio, aprendizado, planejamento ou comunicação.</blockquote>
+    <p>Note três aspectos importantes dessa definição:</p>
+    <ol>
+      <li><strong>IA é um campo, não uma ferramenta única.</strong> Existem muitas IAs diferentes, com lógicas de funcionamento distintas.</li>
+      <li><strong>A analogia com o humano é funcional, não literal.</strong> IA não "pensa como gente" — ela executa tarefas que, em humanos, envolveriam pensamento.</li>
+      <li><strong>A definição desloca o foco do "mágico" para o funcional:</strong> percepção, raciocínio, aprendizado, planejamento, comunicação.</li>
+    </ol>
+
+    <h3>4.2 O que IA não é</h3>
+    <p>Antes de avançar, vamos eliminar três confusões comuns:</p>
+    <div class="highlight-box warning">
+      <h4>⚠️ IA não é consciência.</h4>
+      <p>Nenhum sistema de IA atual possui senciência, intencionalidade ou compreensão genuína. O que parece "compreensão" é processamento estatístico sofisticado.</p>
+    </div>
+    <div class="highlight-box warning">
+      <h4>⚠️ IA não é oráculo.</h4>
+      <p>Modelos de IA não acessam a "verdade" — eles geram saídas baseadas em padrões aprendidos. A saída pode ser plausível e errada.</p>
+    </div>
+    <div class="highlight-box warning">
+      <h4>⚠️ IA não é autossuficiente.</h4>
+      <p>Todo sistema de IA depende de dados, contexto e supervisão humana para produzir resultados confiáveis. Quem acredita em IA "autônoma" como padrão está desinformado.</p>
+    </div>
+
+    <h3>4.3 Um mapa mínimo do ecossistema</h3>
+    <p>Para navegar pelo mundo da IA, você precisa distinguir quatro camadas:</p>
+
+    <table>
+      <thead>
+        <tr><th>Camada</th><th>O que é</th><th>Exemplo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Algoritmo</strong></td><td>Conjunto de instruções para realizar uma tarefa</td><td>Um passo a passo para ordenar uma lista</td></tr>
+        <tr><td><strong>Modelo</strong></td><td>Representação construída a partir de dados, capaz de fazer predições ou gerar saídas</td><td>Um modelo que classifica e-mails como spam ou não spam</td></tr>
+        <tr><td><strong>Treinamento</strong></td><td>Processo pelo qual o modelo "aprende" padrões a partir de dados</td><td>Mostrar milhares de e-mails rotulados ao modelo</td></tr>
+        <tr><td><strong>Inferência</strong></td><td>Uso do modelo treinado para gerar saídas sobre dados novos</td><td>Classificar um e-mail que o modelo nunca viu</td></tr>
+      </tbody>
+    </table>
+
+    <p>Este vocabulário mínimo será usado em todo o curso. Se você fixar essas quatro noções, terá uma base sólida para compreender qualquer discussão técnica ou comercial sobre IA.</p>
+  </div>
+
+  <!-- SEÇÃO 5 -->
+  <div class="section">
+    <h2>5. As principais famílias de IA — um panorama útil</h2>
+    <p>Uma das confusões mais rentáveis do mercado é tratar todas as IAs como se fossem iguais. Não são. Conhecer as diferenças é o que separa o usuário ingênuo do profissional crítico.</p>
+
+    <h3>5.1 IA Simbólica (ou IA baseada em regras)</h3>
+    <p><strong>Lógica:</strong> sistemas que operam com regras explícitas e manipulação de símbolos.</p>
+    <ul>
+      <li>Funcionam bem em domínios formalizáveis (xadrez, sistemas especialistas, diagnóstico baseado em regras).</li>
+      <li>São transparentes e auditáveis.</li>
+      <li>Não "aprendem" com dados — dependem de conhecimento codificado por humanos.</li>
+    </ul>
+
+    <h3>5.2 Aprendizado de Máquina (Machine Learning)</h3>
+    <p><strong>Lógica:</strong> algoritmos que aprendem padrões a partir de dados, sem serem explicitamente programados para cada regra.</p>
+
+    <table>
+      <thead>
+        <tr><th>Paradigma</th><th>Funcionamento</th><th>Exemplo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Supervisionado</strong></td><td>Aprende com exemplos rotulados (entrada → saída esperada)</td><td>Classificar imagens de gatos vs. cachorros com base em fotos rotuladas</td></tr>
+        <tr><td><strong>Não supervisionado</strong></td><td>Encontra padrões em dados sem rótulos</td><td>Agrupar clientes por comportamento de compra (segmentação)</td></tr>
+        <tr><td><strong>Por reforço</strong></td><td>Aprende por tentativa e erro, recebendo recompensas ou penalidades</td><td>Treinar um agente para jogar videogame</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.3 Aprendizado Profundo (Deep Learning)</h3>
+    <p><strong>Lógica:</strong> uma subcategoria do aprendizado de máquina que utiliza redes neurais com muitas camadas ("profundas") para capturar padrões complexos. Extremamente potente para visão computacional, processamento de linguagem natural, síntese de voz e outras tarefas de alta complexidade. Exige grandes volumes de dados e muito poder computacional.</p>
+
+    <h3>5.4 IA Generativa</h3>
+    <p><strong>Lógica:</strong> sistemas que geram conteúdo novo — texto, imagem, código, áudio, vídeo — a partir de um modelo treinado sobre vastos corpora. Incluem os grandes modelos de linguagem (LLMs) que popularizaram a IA recentemente. Baseiam-se em <strong>modelagem probabilística</strong>: o sistema estima a sequência ou combinação mais plausível, não a "verdadeira".</p>
+
+    <div class="highlight-box warning">
+      <h4>⚠️ Atenção crítica</h4>
+      <p>O fato de um texto gerado "fazer sentido" não significa que ele contenha informações corretas. A plausibilidade é um produto do modelo, não uma garantia de acurácia. Este será um dos temas mais importantes de todo o curso.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="page">
+
+  <!-- SEÇÃO 6 -->
+  <div class="section">
+    <h2>6. O papel central dos dados</h2>
+    <p>Se há uma ideia que percorre todos os módulos e que você deve internalizar desde já, é esta:</p>
+    <blockquote>Sem dados, não há IA. E sem dados adequados ao contexto, não há IA confiável.</blockquote>
+
+    <h3>6.1 Dados como matéria-prima</h3>
+    <p>Modelos de aprendizado de máquina e aprendizado profundo são, essencialmente, máquinas de encontrar padrões. Mas padrões só podem ser encontrados se houver <strong>dados</strong> onde procurá-los. A qualidade do modelo jamais ultrapassará a qualidade dos dados usados no treinamento. Isso tem implicações práticas enormes:</p>
+    <ul>
+      <li>Dados enviesados produzem modelos enviesados.</li>
+      <li>Dados escassos produzem modelos frágeis.</li>
+      <li>Dados desatualizados produzem modelos que falham no mundo real.</li>
+    </ul>
+
+    <h3>6.2 Dados não são "a verdade"</h3>
+    <p>Dados são representações — sempre parciais, sempre construídas a partir de escolhas humanas sobre o que medir, como medir, o que registrar e o que ignorar. O dado não é neutro. Um profissional que usa IA com inteligência não pergunta apenas "o que o modelo disse?" — pergunta também "com que dados ele foi treinado?" e "esses dados representam adequadamente o contexto em que estou aplicando o modelo?".</p>
+
+    <h3>6.3 O movimento Data-Centric AI</h3>
+    <p>Uma das tendências mais importantes da área, especialmente relevante para quem usa IA em problemas reais, é o movimento <strong>Data-Centric AI</strong>. Sua premissa é clara: em vez de focar apenas em melhorar os modelos, devemos focar em melhorar os dados. Dados de alta qualidade, bem rotulados, representativos e com contexto adequado geram ganhos frequentemente superiores a arquiteturas de modelo mais sofisticadas. Este princípio — dados no centro — será retomado no Módulo 5.</p>
+  </div>
+
+  <!-- SEÇÃO 7 -->
+  <div class="section">
+    <h2>7. IA, probabilidade e padrões — uma mudança de chave mental</h2>
+    <p>A maioria das pessoas foi educada para pensar em termos de <strong>certezas algorítmicas</strong>: se eu faço X, acontece Y. A inteligência artificial contemporânea — especialmente a generativa — opera em outro registro: o da <strong>inferência probabilística</strong>.</p>
+
+    <p>O que isso significa?</p>
+    <ul>
+      <li>O modelo não "sabe" a resposta; ele estima qual a resposta mais provável dadas as informações disponíveis.</li>
+      <li>A qualidade da estimativa depende do contexto fornecido, da qualidade do treinamento e da natureza do problema.</li>
+      <li>Saídas diferentes podem ser geradas para a mesma entrada — e múltiplas saídas podem ser plausíveis, mas não igualmente corretas.</li>
+    </ul>
+
+    <div class="highlight-box info">
+      <h4>💡 Implicação prática</h4>
+      <p>Confiar cegamente na primeira saída de um modelo é uma estratégia perdedora. É preciso aprender a fornecer contexto, iterar, comparar, checar. Essa é a base da engenharia de prompt que você aprenderá no Módulo 4: prompting não é "pedir bem", é <strong>fornecer ao modelo a estrutura de raciocínio e o contexto que ele precisa para gerar uma inferência de qualidade</strong>.</p>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 8 -->
+  <div class="section">
+    <h2>8. IA vs. Automação Simples — uma distinção indispensável</h2>
+    <p>Uma das confusões mais frequentes — e que leva a expectativas frustradas e desperdício de recursos — é tratar qualquer sistema automatizado como "IA".</p>
+
+    <table>
+      <thead>
+        <tr><th>Característica</th><th>Automação Simples</th><th>Sistema de IA (adaptativo)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Funcionamento</strong></td><td>Segue regras fixas e explícitas</td><td>Aprende padrões a partir de dados</td></tr>
+        <tr><td><strong>Flexibilidade</strong></td><td>Comportamento rígido, determinístico</td><td>Comportamento adaptativo, probabilístico</td></tr>
+        <tr><td><strong>Manutenção</strong></td><td>Exige reprogramação manual para mudanças</td><td>Pode se ajustar com novos dados (dentro de limites)</td></tr>
+        <tr><td><strong>Exemplo</strong></td><td>Alarme que dispara às 8h</td><td>Sistema que detecta anomalias em um fluxo de dados</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box success">
+      <h4>✅ Regra de bolso</h4>
+      <p>Se você consegue descrever exaustivamente todas as regras do problema, provavelmente não precisa de IA. Se o problema envolve padrões complexos, ambiguidade ou necessidade de adaptação a dados novos, a IA pode ser o caminho — desde que bem implementada.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="page">
+
+  <!-- SEÇÃO 9 -->
+  <div class="section">
+    <h2>9. O arcabouço conceitual do Cérebro Digital</h2>
+    <p>Chegamos ao ponto em que podemos amarrar tudo o que vimos até aqui em uma compreensão clara do que é o <strong>Cérebro Digital</strong>.</p>
+
+    <h3>9.1 Não é metáfora — é arquitetura</h3>
+    <p>O termo "Cérebro Digital" não é uma metáfora poética vazia. Ele designa uma <strong>arquitetura cognitiva híbrida</strong>: um arranjo no qual o pensamento humano e os sistemas de IA se articulam de forma funcional, cada parte contribuindo com o que faz melhor.</p>
+    <p>Essa ideia dialoga com uma tradição científica respeitável. Em 1998, os filósofos Andy Clark e David Chalmers publicaram um artigo seminal chamado <em>The Extended Mind</em> ("A Mente Estendida"). A tese deles é que objetos e sistemas externos ao cérebro biológico podem, sob certas condições, funcionar como parte integrante dos processos cognitivos. Um caderno onde você anota informações que sua memória não retém, por exemplo, funciona como extensão da sua cognição — não como acessório externo.</p>
+
+    <div class="highlight-box info">
+      <h4>💡 O Cérebro Digital aplica essa lógica à era da IA</h4>
+      <p>Quando um sistema de inteligência artificial é integrado ao seu fluxo de raciocínio — com contexto, método, checagem e direção humana — ele se torna parte da sua arquitetura cognitiva, e não uma ferramenta externa que você "consulta".</p>
+    </div>
+
+    <h3>9.2 Os papéis na arquitetura híbrida</h3>
+    <p>Nessa arquitetura, os papéis são claramente distintos:</p>
+
+    <table>
+      <thead>
+        <tr><th>🧠 O Humano é responsável por</th><th>🤖 A IA contribui com</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Intencionalidade (por que estamos fazendo isso?)</td><td>Processamento assistido (analisar volumes que um humano não processaria em tempo hábil)</td></tr>
+        <tr><td>Direção estratégica (qual o melhor caminho?)</td><td>Recombinação e síntese (gerar possibilidades a partir de padrões aprendidos)</td></tr>
+        <tr><td>Interpretação contextual (o que esses dados significam neste cenário?)</td><td>Ampliação do espaço de busca (explorar caminhos que o viés humano ignoraria)</td></tr>
+        <tr><td>Crítica e validação (essa saída é confiável? Quais os limites?)</td><td>Automação de partes do fluxo (liberar o humano para tarefas de maior valor cognitivo)</td></tr>
+        <tr><td>Responsabilidade última (quem responde pela decisão?)</td><td>Apoio à análise (oferecer perspectivas, sumarizações, detecção de padrões)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>9.3 O que a expansão cognitiva realmente significa</h3>
+    <p>"Expansão cognitiva", no contexto deste curso, não é uma promessa vaga de "ficar mais inteligente". É algo muito mais concreto e verificável:</p>
+    <ul>
+      <li><strong>Ampliar a capacidade de abstração:</strong> formular problemas com mais precisão.</li>
+      <li><strong>Aumentar a velocidade de iteração:</strong> testar mais hipóteses em menos tempo.</li>
+      <li><strong>Melhorar a modelagem:</strong> decompor desafios complexos em partes tratáveis.</li>
+      <li><strong>Expandir a exploração:</strong> considerar possibilidades que você não consideraria sozinho.</li>
+      <li><strong>Fortalecer a integração:</strong> conectar dados, ferramentas e decisão em fluxos coerentes.</li>
+    </ul>
+
+    <p>A IA não substitui o pensamento. Ela amplia o alcance operacional do pensamento quando — e somente quando — submetida a método, contexto e supervisão crítica.</p>
+  </div>
+
+</div>
+
+<div class="page">
+
+  <!-- SEÇÃO 10: SÍNTESE -->
+  <div class="section">
+    <h2>10. Síntese do Módulo 0</h2>
+    <p>Antes de você avançar para o próximo módulo, vejamos o que construímos até aqui.</p>
+
+    <h3>Conceitos fundamentais que você já possui</h3>
+    <table>
+      <thead>
+        <tr><th>Conceito</th><th>Em uma frase</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>IA</strong></td><td>Campo computacional dedicado a tarefas que, em humanos, envolveriam percepção, raciocínio, aprendizado ou comunicação</td></tr>
+        <tr><td><strong>Modelo</strong></td><td>Representação construída a partir de dados, capaz de gerar predições ou saídas</td></tr>
+        <tr><td><strong>Treinamento</strong></td><td>Processo pelo qual o modelo aprende padrões a partir de dados</td></tr>
+        <tr><td><strong>Inferência</strong></td><td>Uso do modelo treinado sobre dados novos</td></tr>
+        <tr><td><strong>IA Simbólica</strong></td><td>IA baseada em regras explícitas</td></tr>
+        <tr><td><strong>Machine Learning</strong></td><td>IA que aprende padrões a partir de dados</td></tr>
+        <tr><td><strong>Deep Learning</strong></td><td>Machine Learning com redes neurais profundas</td></tr>
+        <tr><td><strong>IA Generativa</strong></td><td>Sistemas que geram conteúdo novo com base em modelagem probabilística</td></tr>
+        <tr><td><strong>Dado</strong></td><td>Matéria-prima da IA, sempre parcial e construída</td></tr>
+        <tr><td><strong>Plausibilidade ≠ Verdade</strong></td><td>O fato de uma saída "fazer sentido" não garante sua acurácia</td></tr>
+        <tr><td><strong>Automação simples</strong></td><td>Regras fixas e determinísticas</td></tr>
+        <tr><td><strong>Sistema adaptativo</strong></td><td>Aprende padrões, opera probabilisticamente</td></tr>
+        <tr><td><strong>Cérebro Digital</strong></td><td>Arquitetura cognitiva híbrida humano-IA, com papéis distintos e complementares</td></tr>
+        <tr><td><strong>Expansão cognitiva</strong></td><td>Ampliação da capacidade de abstração, iteração, modelagem, exploração e integração</td></tr>
+      </tbody>
+    </table>
+
+    <h3>O que muda na sua postura a partir de agora</h3>
+    <p>Você não precisa mais aceitar o discurso inflacionado do mercado de IA. Você já sabe que:</p>
+    <ul>
+      <li>IA não é magia — é engenharia de dados, modelos e inferência.</li>
+      <li>Toda saída de IA precisa ser contextualizada, checada e validada.</li>
+      <li>O valor não está na ferramenta, mas na arquitetura de uso.</li>
+      <li>Sua inteligência continua sendo o centro — a IA é extensão, não substituta.</li>
+    </ul>
+  </div>
+
+  <!-- ATIVIDADE -->
+  <div class="activity-box">
+    <h3>📝 Atividade preparatória para o Módulo 1</h3>
+    <p>Gostaríamos de propor uma atividade simples, mas poderosa, antes que você prossiga. Ela levará cerca de 15 minutos.</p>
+    <p><strong>Pegue papel e caneta (ou um documento em branco) e responda:</strong></p>
+    <ol>
+      <li><strong>Descreva um problema real</strong> do seu contexto profissional, acadêmico ou criativo que você gostaria de resolver com apoio de IA. (Uma frase é suficiente.)</li>
+      <li><strong>Identifique:</strong> esse problema é bem formulado? Você consegue descrever claramente o que seria uma solução satisfatória?</li>
+      <li><strong>Pergunte-se:</strong> quais dados ou informações seriam necessários para abordar esse problema? Você os possui? São confiáveis?</li>
+      <li><strong>Reflita:</strong> se você pudesse "expandir sua cognição" para resolver esse problema, que capacidade específica gostaria de ampliar? Velocidade de análise? Exploração de alternativas? Organização de informações? Precisão de checagem?</li>
+    </ol>
+    <p>Guarde suas respostas. Você as retomará no Módulo 3, quando trabalharemos <strong>engenharia de problemas</strong> — e descobrirá que boa parte do sucesso com IA começa exatamente aqui.</p>
+  </div>
+
+  <!-- SEÇÃO 11 -->
+  <div class="section">
+    <h2>11. O que vem a seguir</h2>
+    <p>Você concluiu o Módulo 0. Agora possui o <strong>arcabouço conceitual mínimo</strong> para compreender o ecossistema da IA com clareza e discernimento.</p>
+    <p>No <strong>Módulo 1 — Fundamentos do Cérebro Digital e da Expansão Cognitiva</strong>, aprofundaremos a arquitetura híbrida humano-IA: como a cognição se estende para fora do cérebro biológico, quais são as condições para que sistemas externos funcionem como parte do pensamento, e como desenhar intencionalmente essa simbiose cognitiva.</p>
+    <p>Até lá, leve consigo a pergunta que orienta todo o curso:</p>
+    <blockquote>Como posso organizar o uso da IA para que ela amplie minha inteligência, em vez de terceirizar meu pensamento?</blockquote>
+  </div>
+
+  <!-- REFERÊNCIAS -->
+  <div class="section">
+    <h2>Referências deste módulo</h2>
+    <ul>
+      <li><strong>UNESCO (2024).</strong> <em>AI Competency Framework for Teachers.</em><br><a href="https://www.unesco.org/en/articles/ai-competency-framework-teachers" style="color:var(--accent-primary);">unesco.org/en/articles/ai-competency-framework-teachers</a></li>
+      <li><strong>NIST (2024).</strong> <em>Artificial Intelligence Risk Management Framework: Generative AI Profile.</em><br><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" style="color:var(--accent-primary);">nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf</a></li>
+      <li><strong>Data-Centric AI in the Age of Large Language Models (2024).</strong><br><a href="https://arxiv.org/abs/2406.14473" style="color:var(--accent-primary);">arxiv.org/abs/2406.14473</a></li>
+      <li><strong>Clark, A.; Chalmers, D. (1998).</strong> <em>The Extended Mind.</em><br><a href="https://www.alice.id.tue.nl/references/clark-chalmers-1998.pdf" style="color:var(--accent-primary);">alice.id.tue.nl/references/clark-chalmers-1998.pdf</a></li>
+      <li><strong>Brown, J. S.; Collins, A.; Duguid, P. (1989).</strong> <em>Situated Cognition and the Culture of Learning.</em></li>
+      <li><strong>Collins, A.; Brown, J. S.; Newman, S. E. (1988).</strong> <em>Cognitive Apprenticeship: Teaching the Craft of Reading, Writing, and Mathematics.</em></li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="module-footer">
+    <p><strong>O Cérebro Digital e a Expansão Cognitiva</strong><br>
+    IA a serviço da Inteligência de Dados e da Solução de Problemas Reais</p>
+    <p style="margin-top:10px;font-size:12px;">Este ebook é parte integrante do curso e contém conteúdo protegido por direitos autorais.<br>Sua distribuição é permitida exclusivamente aos participantes inscritos.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
